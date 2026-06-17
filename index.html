@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WOOKING 书阁</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- ─── Header ─── -->
+  <header class="header">
+    <a href="#" class="logo" onclick="router.home(); return false;">
+      <span class="logo-icon">📖</span>
+      <span>WOOKING<span class="accent">书阁</span></span>
+    </a>
+    <nav class="header-nav">
+      <a href="#" onclick="router.home(); return false;">书架</a>
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换主题">🌙</button>
+    </nav>
+  </header>
+
+  <!-- ─── Home: Bookshelf ─── -->
+  <main id="pageHome" class="page">
+    <section class="hero-banner">
+      <h1>WOOKING 书阁</h1>
+      <p>原创小说在线阅读 · AI 辅助创作</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-icon">🔥</span>
+        全部作品
+      </h2>
+      <div class="book-grid" id="bookGrid"></div>
+    </section>
+  </main>
+
+  <!-- ─── Book Detail ─── -->
+  <main id="pageDetail" class="page" style="display:none">
+    <div class="detail-header" id="detailHeader"></div>
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-icon">📑</span>
+        章节目录
+      </h2>
+      <div class="chapter-search">
+        <input type="text" id="chapterSearch" placeholder="搜索章节..." oninput="filterChapters(this.value)"/>
+      </div>
+      <div class="chapter-list" id="chapterList"></div>
+    </section>
+  </main>
+
+  <!-- ─── Reader ─── -->
+  <main id="pageReader" class="page" style="display:none">
+    <div class="reader-bar">
+      <button class="reader-bar-btn" onclick="router.detail(currentBook.id)">‹ 返回目录</button>
+      <span class="reader-bar-title" id="readerBarTitle"></span>
+      <button class="reader-bar-btn" id="themeBtn2" onclick="toggleTheme()">🌙</button>
+    </div>
+    <article class="reader-content" id="readerContent">
+      <h2 class="reader-chapter-title" id="readerTitle"></h2>
+      <div class="reader-text" id="readerText"></div>
+    </article>
+    <div class="reader-nav" id="readerNav">
+      <button class="reader-nav-btn" id="prevBtn" onclick="reader.prev()">上一章</button>
+      <button class="reader-nav-btn" onclick="router.detail(currentBook.id)">目录</button>
+      <button class="reader-nav-btn" id="nextBtn" onclick="reader.next()">下一章</button>
+    </div>
+    <div class="reader-progress" id="readerProgress"></div>
+  </main>
+
+  <!-- ─── Scroll to Top ─── -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <footer class="footer">
+    <p>WOOKING 书阁 · 原创小说在线阅读 · AI 辅助创作</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
